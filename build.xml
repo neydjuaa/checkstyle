@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="ant-sample" default="build" basedir=".">
+
+<!-- Run this sample with ant checkstyle and you will recieve checkstyle_report.xml 
+     file with one violation of ReturnNullInsteadOfBoolean check -->
+<!-- ##########################################################################
+     ####################### target: checkstyle ###############################
+     ########################################################################## -->
+<target name="checkstyle"
+        description="Generates a report of code convention violations.">
+  <!-- See http://checkstyle.sourceforge.net/anttask.html for full options of using checkstyle with ant-->
+  
+  <taskdef resource="com/puppycrawl/tools/checkstyle/ant/checkstyle-ant-task.properties" classpath="${basedir}/lib/checkstyle-8.23-all.jar"/>
+  <checkstyle config="sun_checks.xml"
+              failureProperty="checkstyle.failure"
+              failOnViolation="false">
+    
+    <formatter type="xml" tofile="checkstyle-result.xml"/>
+    <fileset dir="src" includes="**/*.java"/>
+  </checkstyle>
+
+</target>
+
+
+</project>
